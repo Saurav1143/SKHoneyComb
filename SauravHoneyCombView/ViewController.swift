@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,HoneyCombViewDelegate{
 
       //MARK:- @IBoutlets:---
      @IBOutlet weak var skHoneyCombView: SKHoneyCombView!
@@ -30,5 +30,11 @@ class ViewController: UIViewController {
         self.skHoneyCombView.honeyCombObjectsArr = self.honeycombObjectsArray
     }
 
-}
+    //MARK:- Delegate Method...
+    
+    func didSelectHoneyComb(_ honeyCombObject: SKHoneyCombObject) {
+        print(honeyCombObject.name)
+    }
+    
+}//Class
 
