@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2123511B22572E3000BB41E6 /* HoneyComb.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2123511A22572E3000BB41E6 /* HoneyComb.xib */; };
+		2123511D225731F700BB41E6 /* HoneyComb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2123511C225731F700BB41E6 /* HoneyComb.swift */; };
 		21243B7B2223CA830032D757 /* Extension+UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21243B7A2223CA830032D757 /* Extension+UIBezierPath.swift */; };
 		21715F82221D6A6800B501C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21715F81221D6A6800B501C8 /* AppDelegate.swift */; };
 		21715F84221D6A6800B501C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21715F83221D6A6800B501C8 /* ViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2123511A22572E3000BB41E6 /* HoneyComb.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HoneyComb.xib; sourceTree = "<group>"; };
+		2123511C225731F700BB41E6 /* HoneyComb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneyComb.swift; sourceTree = "<group>"; };
 		21243B7A2223CA830032D757 /* Extension+UIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIBezierPath.swift"; sourceTree = "<group>"; };
 		21715F7E221D6A6800B501C8 /* SauravHoneyCombView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SauravHoneyCombView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21715F81221D6A6800B501C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2123511922572DED00BB41E6 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				2123511A22572E3000BB41E6 /* HoneyComb.xib */,
+				2123511C225731F700BB41E6 /* HoneyComb.swift */,
+			);
+			path = XIB;
+			sourceTree = "<group>";
+		};
 		21715F75221D6A6800B501C8 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +73,7 @@
 		21715F80221D6A6800B501C8 /* SauravHoneyCombView */ = {
 			isa = PBXGroup;
 			children = (
+				2123511922572DED00BB41E6 /* XIB */,
 				21F976A42233FABE00667833 /* Stoaryboard */,
 				21F976A32233FAA500667833 /* AppDelegate */,
 				21F976A22233FA9000667833 /* Extension */,
@@ -165,6 +179,7 @@
 			files = (
 				21715F8C221D6A6A00B501C8 /* LaunchScreen.storyboard in Resources */,
 				21715F89221D6A6A00B501C8 /* Assets.xcassets in Resources */,
+				2123511B22572E3000BB41E6 /* HoneyComb.xib in Resources */,
 				21715F87221D6A6800B501C8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +193,7 @@
 			files = (
 				21715F95221D6F5700B501C8 /* SKHoneyCombView.swift in Sources */,
 				21715F84221D6A6800B501C8 /* ViewController.swift in Sources */,
+				2123511D225731F700BB41E6 /* HoneyComb.swift in Sources */,
 				21715F82221D6A6800B501C8 /* AppDelegate.swift in Sources */,
 				21715F97221D6F7A00B501C8 /* SKHoneyCombObject.swift in Sources */,
 				21243B7B2223CA830032D757 /* Extension+UIBezierPath.swift in Sources */,

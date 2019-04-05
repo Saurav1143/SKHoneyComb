@@ -10,6 +10,8 @@ import UIKit
 import Foundation
 
 class ViewController: UIViewController,HoneyCombViewDelegate{
+    
+    
 
       //MARK:- @IBoutlets:---
      @IBOutlet weak var skHoneyCombView: SKHoneyCombView!
@@ -28,12 +30,21 @@ class ViewController: UIViewController,HoneyCombViewDelegate{
             self.honeycombObjectsArray.append(honeycombObject)
         }
         self.skHoneyCombView.honeyCombObjectsArr = self.honeycombObjectsArray
+        skHoneyCombView.delegate = self
     }
 
     //MARK:- Delegate Method...
     
-    func didSelectHoneyComb(_ honeyCombObject: SKHoneyCombObject) {
+    func didSelectHoneyComb(_ honeyCombObject: SKHoneyCombObject, _ honeyCombView: HoneyComb) {
         print(honeyCombObject.name)
+        if (honeyCombView.backGroundImage.backgroundColor == .red){
+            honeyCombView.backGroundImage.backgroundColor = .blue
+            honeyCombView.title.text = "UnSelected"
+        } else {
+            honeyCombView.backGroundImage.backgroundColor = .red
+            honeyCombView.title.text = "Selected"
+        }
+        
     }
     
 }//Class

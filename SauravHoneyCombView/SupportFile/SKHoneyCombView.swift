@@ -11,7 +11,7 @@ import UIKit
 
 //MARK:- Protocols...
 protocol HoneyCombViewDelegate {
-    func didSelectHoneyComb(_ honeyCombObject: SKHoneyCombObject)
+    func didSelectHoneyComb(_ honeyCombObject: SKHoneyCombObject,_ honeyCombView: HoneyComb)
 }
 
 class SKHoneyCombView:UIView {
@@ -107,17 +107,14 @@ class SKHoneyCombView:UIView {
             //Place Button in row View....
             
             for x in 0..<itemCount {
-                let item = UIButton()
-                // item.setTitle(value[x].name, for: .normal)
-                item.tag = x
-                item.titleLabel?.numberOfLines = 0
-                item.titleLabel?.adjustsFontSizeToFitWidth = true
-                item.titleLabel?.lineBreakMode = .byWordWrapping
-                item.titleLabel?.textAlignment = .center
-                item.titleLabel?.minimumScaleFactor = 0.5
-                item.clipsToBounds = true
+                let backView = UIView()
+                let honeyView = HoneyComb()
                 let itemWidth = heightOfRowView
-                item.frame.size = CGSize(width: itemWidth , height: itemWidth)
+                //item.frame.size = CGSize(width: itemWidth , height: itemWidth)
+                backView.frame.size = CGSize(width: itemWidth, height: itemWidth)
+                honeyView.frame.size = CGSize(width: itemWidth , height: itemWidth)
+                
+                honeyView.honeyCombButton.tag = x
                 var centerX:CGFloat!
                 let centerY:CGFloat!
                 
@@ -130,11 +127,11 @@ class SKHoneyCombView:UIView {
                 //Calculation for Center Of X points of items which will be placed inside Row....
                 
                 if(isEven(key)) {
-                    centerX = ((CGFloat(x + 1)) * self.padding) + ((item.frame.width / 2) * ((2 * CGFloat(x)) + 1)) - (CGFloat(x) * (shiftLeftX))
+                    centerX = ((CGFloat(x + 1)) * self.padding) + ((honeyView.frame.width / 2) * ((2 * CGFloat(x)) + 1)) - (CGFloat(x) * (shiftLeftX))
                 } else {
                     
-                    let extraSpace = (item.frame.width / 2) + (self.padding / 2) - (shiftLeftX / 2)
-                    centerX = extraSpace + ((CGFloat(x + 1)) * self.padding) + ((item.frame.width / 2) * ((2 * CGFloat(x)) + 1))  - (CGFloat(x) * (shiftLeftX))
+                    let extraSpace = (honeyView.frame.width / 2) + (self.padding / 2) - (shiftLeftX / 2)
+                    centerX = extraSpace + ((CGFloat(x + 1)) * self.padding) + ((honeyView.frame.width / 2) * ((2 * CGFloat(x)) + 1))  - (CGFloat(x) * (shiftLeftX))
                     
                     if(x == 0) {
                         rowView.frame.size.width += (extraSpace)
@@ -151,16 +148,21 @@ class SKHoneyCombView:UIView {
                 centerY = rowView.center.y - itemShifty
                 
                 shiftYRowView = shiftUpY
+                backView.center = CGPoint(x: centerX, y: centerY)
+    
+               
+                applyHexagonMaskOnUIView(view: backView)
                 
-                item.center = CGPoint(x: centerX, y: centerY)
                 
-                applyHexagonMask(button:item)
-                item.setBackgroundImage(UIImage(named: "honeycomb"), for: .normal)
-                
-                item.accessibilityElements = [value[x]]
-                item.addTarget(self, action: #selector(didSelectItem(_:)), for: .touchUpInside)
-                rowView.frame.size.width += (item.frame.size.width + self.padding - shiftLeftX)
-                rowView.addSubview(item)
+                honeyView.backgroundColor = .green
+                honeyView.transform = honeyView.transform.rotated(by: -CGFloat(Double.pi / 2))
+                backView.addSubview(honeyView)
+              
+                honeyView.honeyCombButton.accessibilityElements = [value[x],honeyView]
+                honeyView.honeyCombButton.addTarget(self, action: #selector(didSelectItem(_:)), for: .touchUpInside)
+                rowView.frame.size.width += (honeyView.frame.size.width + self.padding - shiftLeftX)
+                rowView.addSubview(backView)
+               
             }//end....
             
             rowView.frame.size.width += (2 * self.padding)
@@ -188,18 +190,19 @@ class SKHoneyCombView:UIView {
         return result
     }
     
-    private func applyHexagonMask(button:UIButton) {
-        let maskPath = UIBezierPath(frame: button.bounds, numberOfSides: 6, cornerRadius: 0.0)
+    
+    private func applyHexagonMaskOnUIView(view:UIView) {
+        let maskPath = UIBezierPath(frame: view.bounds, numberOfSides: 6, cornerRadius: 0.0)
         let maskingLayer = CAShapeLayer()
         maskingLayer.path = maskPath?.cgPath
-        button.transform = button.transform.rotated(by: CGFloat(Double.pi / 2))
-        button.layer.mask = maskingLayer
+        view.transform = view.transform.rotated(by: CGFloat(Double.pi / 2))
+        view.layer.mask = maskingLayer
     }
     
     @objc func didSelectItem(_ target: UIButton) {
-        if let firstData = target.accessibilityElements?.first as? SKHoneyCombObject {
-            delegate?.didSelectHoneyComb(firstData)
-            print(firstData.name)
+        if let firstData = target.accessibilityElements?.first as? SKHoneyCombObject,let honeyView = target.accessibilityElements?.last as? HoneyComb {
+            delegate?.didSelectHoneyComb(firstData, honeyView)
+          //  print(firstData.name)
         }
     }
 }//Class......
