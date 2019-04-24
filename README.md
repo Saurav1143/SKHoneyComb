@@ -1,6 +1,6 @@
 # SKHoneyComb
 
-[![SKHoney-Comb-View.gif](https://i.postimg.cc/QC9Y7w0V/SKHoney-Comb-View.gif)](https://postimg.cc/sGzJd6FR)
+
 
 # Usage
 
