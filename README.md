@@ -1,6 +1,6 @@
 # SKHoneyComb
 
-
+[![Honey-Comb-View.gif](https://i.postimg.cc/cCfrt0FY/Honey-Comb-View.gif)](https://postimg.cc/sGDVtddD)
 
 # Usage
 
@@ -22,7 +22,13 @@ override func viewDidLoad() {
  # Delegate
  **HoneyCombViewDelegate**
  ```
- func didSelectHoneyComb(_ honeyCombObject: SKHoneyCombObject) {
-        print(honeyCombObject.name)
+func didSelectHoneyComb(_ honeyCombObject: SKHoneyCombObject, _ honeyCombView: HoneyComb) {
+        honeyCombObject.isSelected = !honeyCombObject.isSelected
+        if (honeyCombObject.isSelected){
+            honeyCombView.backGroundImage.image = UIImage(named: "blue")
+        } else {
+           honeyCombView.backGroundImage.image = UIImage(named: "gray-honey")
+        }
+        
     }
  ```
